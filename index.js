@@ -1,30 +1,16 @@
-const express = require('express')
-const app = express()
-const port = 3000
+const express = require('express');
+const { createUserRoutes, userRouter } = require('./routes/user');
+const { createCourseRoutes, courseRouter } = require('./routes/course'); // Fixed 'require' and missing export
+const app = express();
 
-app.post("/user/signup",function(req, res){
-    res.json({
-        message: "signup endpoint"
-    })
-})
-app.post("/user/signin",function(req, res){
-    res.json({
-        message: "signin endpoint"
-    })
-})
-app.post("/course/purchase",function(req, res){
-    res.json({
-        message: "signup endpoint"
-    })
-})
-app.get("/courses",function(req, res){
-    res.json({
-        message: "courses endpoint"
-    })
-})
-app.get("/user/purchases",function(req, res){
-    res.json({
-        message: "purchases endpoint"
-    })
-})
-app.listen(3000)
+// Fixed parentheses to use round brackets instead of curly braces
+app.use("/user", userRouter);
+app.use("/course", courseRouter);
+
+// Properly initializing the routes
+createUserRoutes(app);
+createCourseRoutes(app);
+
+app.listen(3000, () => {
+    console.log('Server is running on http://localhost:3000');
+});
