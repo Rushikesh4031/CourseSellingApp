@@ -4,12 +4,12 @@ const { createCourseRoutes, courseRouter } = require('./routes/course'); // Fixe
 const app = express();
 
 // Fixed parentheses to use round brackets instead of curly braces
-app.use("/user", userRouter);
-app.use("/course", courseRouter);
+app.use("/api/v1/user", userRouter);
+app.use("/api/v1/course", courseRouter);
 
 // Properly initializing the routes
-createUserRoutes(app);
-createCourseRoutes(app);
+// createUserRoutes(app);
+// createCourseRoutes(app);
 
 app.listen(3000, () => {
     console.log('Server is running on http://localhost:3000');
